@@ -52,36 +52,6 @@ You can customize the behavior of your Arch node using the following command-lin
 
 ## Hardware Requirements
 
-### Hardware Requirements for Running an Arch Node
-
-To ensure optimal performance of an Arch Node the following hardware specifications are recommended:
-
-- **Operating System**: Compatible with Linux or MacOS.
-
-- **Processor (CPU)**: A modern multi-core processor is recommended to handle the computational demands of verifying ZKVM proofs.
-
-- **Memory (RAM)**: At least 16 GB of RAM is recommended to ensure smooth operation.
-
-- **Disk Space**: A minimum of 1 TB of SSD storage is required to manage the blockchain data and logs. This allows for adequate storage of historical data and ensures quick data retrieval and processing.
-
-- **Bandwidth**: A stable internet connection with a minimum of 2 megabytes per second upload and download speed is necessary to handle network communications and data transmission reliably.
-
-### Hardware Requirements for Running a Full Bitcoin Node
-
-For validators in the Arch network, operating a full Bitcoin Node is essential. The Arch Node uses the Bitcoin Node to read from the Bitcoin blockchain, enabling the Arch network as an execution layer. Additionally, a coordinator chosen from Arch Node validators will write transactions to the Bitcoin blockchain. Running a full Bitcoin Node thus enables direct interaction with Bitcoin’s network, ensuring validators can effectively perform their roles within the Arch ecosystem.
-
-- **Operating System**: Compatible with recent versions of Mac OS X and Linux. Ensure the operating system is kept up to date for security and compatibility.
-
-- **Memory (RAM)**: A minimum of 2 gigabytes of RAM is necessary. For optimal performance, 4 gigabytes or more is recommended.
-
-- **Disk Space**: At least 350 gigabytes of free disk space on an SSD is recommended. The SSD improves read/write speeds essential during the IBD and normal operations as the blockchain size continuously grows.
-
-- **Bandwidth**: A broadband Internet connection with at least 400 kilobits per second (50 kilobytes per second) upload speed. Full nodes often exceed 200 gigabytes of uploaded data per month and download about 20 gigabytes, with an additional 340 gigabytes on the initial setup.
-
-- **Power Supply**: Continuous operation (24/7) is ideal for network support, but the node should be operational for at least 6 hours daily. Prevent the system from entering low-power modes like sleep or hibernate to maintain consistent network support.
-
-For the most up-to-date information on running a full Bitcoin Node, please visit [Bitcoin.org](https://bitcoin.org/en/full-node).
-
 ### Combined Hardware Requirements for Running Both a Bitcoin Full Node and an Arch Node
 
 For users intending to operate both a Bitcoin Full Node and an Arch Node on the same machine, the following specifications are recommended to handle the demands of both nodes efficiently:
@@ -97,3 +67,20 @@ For users intending to operate both a Bitcoin Full Node and an Arch Node on the 
 - **Bandwidth**: Internet connection with at least 3 megabytes per second upload and download speed is advisable. This increased bandwidth supports the data transmission requirements of both nodes, especially important when the network traffic is high.
 
 By adhering to these enhanced specifications, users can ensure that both their Bitcoin and Arch Nodes operate effectively, contributing to the stability and security of both networks.
+
+### Hardware Requirements for Running an Arch Node
+
+To ensure optimal performance of an Arch Node the following hardware specifications are recommended:
+
+- **Operating System**: Linux or MacOS.
+
+- **Processor (CPU)**: A modern multi-core processor is recommended to handle the computational demands of verifying ZKVM proofs.
+
+- **Memory (RAM)**: At least 16 GB of RAM is recommended to ensure smooth operation.
+
+- **Disk Space**: A minimum of 1 TB of SSD storage is required to manage the blockchain data and logs. This allows for adequate storage of historical data and ensures quick data retrieval and processing.
+
+- **Bandwidth**: A stable internet connection with a minimum of 2 megabytes per second upload and download speed is necessary to handle network communications and data transmission reliably.
+
+### Hardware Requirements for Running a Full Bitcoin Node
+For the most up-to-date information on running a full Bitcoin Node, please visit [Bitcoin.org](https://bitcoin.org/en/full-node).
