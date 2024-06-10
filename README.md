@@ -51,6 +51,21 @@ You can customize the behavior of your Arch node using the following command-lin
 - ```--rpc-bind-port```: Port to bind the RPC server (default: 9001).
 
 ## Hardware Requirements
+
+### Hardware Requirements for Running an Arch Node
+
+To ensure optimal performance of an Arch Node, which supports both transaction processing and cryptographic proof verifications, the following hardware specifications are recommended:
+
+- **Operating System**: Compatible with Linux or MacOS. Choose the operating system that best fits your technical expertise and infrastructure.
+
+- **Processor (CPU)**: A modern multi-core processor is recommended to handle the computational demands of verifying ZKVM proofs.
+
+- **Memory (RAM)**: At least 16 GB of RAM is recommended to ensure smooth operation and efficient handling of multiple tasks simultaneously.
+
+- **Disk Space**: A minimum of 1 TB of SSD storage is required to manage the blockchain data and logs. This allows for adequate storage of historical data and ensures quick data retrieval and processing.
+
+- **Bandwidth**: A stable internet connection with a minimum of 2 megabytes per second upload and download speed is necessary to handle network communications and data transmission reliably.
+
 ### Hardware Requirements for Running a Full Bitcoin Node
 
 For validators in the Arch network, operating a full Bitcoin Node is essential. The Arch Node uses the Bitcoin Node to read from the Bitcoin blockchain, enabling the Arch network as an execution layer. Additionally, a coordinator chosen from Arch Node validators will write transactions to the Bitcoin blockchain. Running a full Bitcoin Node thus enables direct interaction with Bitcoin’s network, ensuring validators can effectively perform their roles within the Arch ecosystem.
@@ -67,6 +82,18 @@ For validators in the Arch network, operating a full Bitcoin Node is essential. 
 
 For the most up-to-date information on running a full Bitcoin Node, please visit [Bitcoin.org](https://bitcoin.org/en/full-node).
 
-Meeting these hardware requirements ensures that your full Bitcoin Node runs efficiently and contributes reliably to the network's health and decentralization.
+### Combined Hardware Requirements for Running Both a Bitcoin Full Node and an Arch Node
 
+For users intending to operate both a Bitcoin Full Node and an Arch Node on the same machine, the following specifications are recommended to handle the demands of both nodes efficiently:
 
+- **Operating System**: Linux or MacOS are recommended. These systems are compatible with the software used by both nodes.
+
+- **Processor (CPU)**: A high-end multi-core processor is essential to manage the intense computational load from both nodes, especially for tasks like verifying ZKVM proofs.
+
+- **Memory (RAM)**: At least 32 GB of RAM is recommended.
+
+- **Disk Space**: A combined total of at least 2 TB of SSD storage is necessary. This space will accommodate the full Bitcoin blockchain and the additional data from the Arch Node.
+
+- **Bandwidth**: Internet connection with at least 3 megabytes per second upload and download speed is advisable. This increased bandwidth supports the data transmission requirements of both nodes, especially important when the network traffic is high.
+
+By adhering to these enhanced specifications, users can ensure that both their Bitcoin and Arch Nodes operate effectively, contributing to the stability and security of both networks.
