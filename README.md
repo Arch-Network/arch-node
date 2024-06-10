@@ -55,7 +55,7 @@ You can customize the behavior of your Arch node using the following command-lin
 
 For validators in the Arch network, operating a full Bitcoin Node is essential. The Arch Node uses the Bitcoin Node to read from the Bitcoin blockchain, enabling the Arch network as an execution layer. Additionally, a coordinator chosen from Arch Node validators will write transactions to the Bitcoin blockchain. Running a full Bitcoin Node thus enables direct interaction with Bitcoin’s network, ensuring validators can effectively perform their roles within the Arch ecosystem.
 
-- **Operating System**: Compatible with recent versions of Windows, Mac OS X, or Linux. Ensure the operating system is kept up to date for security and compatibility.
+- **Operating System**: Compatible with recent versions of Mac OS X and Linux. Ensure the operating system is kept up to date for security and compatibility.
 
 - **Memory (RAM)**: A minimum of 2 gigabytes of RAM is necessary. For optimal performance, 4 gigabytes or more is recommended.
 
@@ -68,3 +68,5 @@ For validators in the Arch network, operating a full Bitcoin Node is essential. 
 For the most up-to-date information on running a full Bitcoin Node, please visit [Bitcoin.org](https://bitcoin.org/en/full-node).
 
 Meeting these hardware requirements ensures that your full Bitcoin Node runs efficiently and contributes reliably to the network's health and decentralization.
+
+
