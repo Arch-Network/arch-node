@@ -90,4 +90,22 @@ For the most up-to-date information on running a full Bitcoin Node, please visit
 By default, the node runs in validator mode. On the initial run, the node automatically generates a public-private key pair, essential for node identification and secure communication within the network. This key is by default located in the file ```secret_key``` in the folder ```arch_data```. To change the default folder pass ```--data-dir``` argument when running Arch Node.
 
 ## Log Outputs
-// TBD
+On successful startup of Arch Node you should see the following logs:
+```
+[2024-06-13T13:10:45Z WARN  rpc::node::key::exchange] Boot node key exchange is not done yet. Will try again.
+[2024-06-13T13:10:50Z WARN  rpc::node::key::exchange] Boot node key exchange is not done yet. Will try again.
+[2024-06-13T13:10:55Z WARN  rpc::node::key::exchange] Boot node key exchange is not done yet. Will try again.
+[2024-06-13T13:11:00Z INFO  rpc::node::key::exchange] Nodes ready: 2/2
+[2024-06-13T13:11:00Z INFO  arch_node] Waiting for boot node to become available...
+[2024-06-13T13:11:00Z INFO  arch_node] Boot node is ready!
+[2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN RPC ENDPOINT : http://bitcoin-node.dev.aws.archnetwork.xyz:18443
+[2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN WALLET : testwallet
+[2024-06-13T13:11:00Z INFO  arch_node] USING ZKVM ENDPOINT : http://127.0.0.1:8001
+[2024-06-13T13:11:00Z INFO  arch_node] ARCH-NODE ID : 2
+[2024-06-13T13:11:00Z INFO  arch_node] STARTING RPC SERVER...
+[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing processed txs...
+[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing UTXO Data...
+[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing UTXO Auth...
+[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing programs...
+[2024-06-13T13:11:01Z INFO  arch_node] RPC SERVER STARTED! PUBLIC ADDRESS : http://127.0.0.1:9002
+```
