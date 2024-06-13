@@ -38,7 +38,7 @@ You can customize the behavior of your Arch node using the following command-lin
 - ```--network-mode```: Network mode (options: MAINNET, TESTNET, DEVNET; default: DEVNET).
 
 #### Bitcoin Integration
-The Arch node connects to the Bitcoin network as a source of truth. Arch Network writes any state changes to the Bitcoin network by sending transactions to the Bitcoin node. Arch Network integrates with Bitcoin network to read and validate ownership of Bitcoin UTXOs.
+The Arch node uses Bitcoin network as a source of truth. Coordinator that is elected among Validators of the Arch Network writes any state changes to the Bitcoin network by sending transactions to the Bitcoin node. Rest of the Arch Network nodes integrate with Bitcoin network to read and validate ownership of Bitcoin UTXOs.
 
 - ```--bitcoin-rpc-endpoint```: Bitcoin RPC server IP address (default: 127.0.0.1).
 - ```--bitcoin-rpc-port```: Port of the Bitcoin RPC server (default: 8332).
