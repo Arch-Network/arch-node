@@ -87,7 +87,7 @@ To ensure optimal performance of an Arch Node the following hardware specificati
 For the most up-to-date information on running a full Bitcoin Node, please visit [Bitcoin.org](https://bitcoin.org/en/full-node).
 
 ## Validator Mode
-By default, the node runs in validator mode. On the initial run, the node automatically generates a public-private key pair, essential for node identification and secure communication within the network. This key is by default located in the file ```secret_key``` in the folder ```arch_data```. If you want to change this default folder then you should pass ```--data-dir``` argument when running Arch Node.
+By default, the node runs in validator mode. On the initial run, the node automatically generates a public-private key pair, essential for node identification and secure communication within the network. This key is by default located in the file ```secret_key``` in the folder ```arch_data```. To change the default folder pass ```--data-dir``` argument when running Arch Node.
 
 ## Log Outputs
 // TBD
