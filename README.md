@@ -31,7 +31,7 @@ To start your node, you can simply run the binary with the following command:
 ### Testnet Configuration
 For validators setting up their Arch node for testnet operations, ensure you configure the following endpoints to connect correctly within the ```testnet4``` environment.
 
-- ```--boot-node-endpoint```: http://testnet4.bootnode.example.com
+- ```--boot-node-endpoint```: http://bootnode.test.aws.archnetwork.xyz
 - ```--prover-endpoint```: http://prover-01.test.aws.archnetwork.xyz
 
 ### Configuring Your Node
