@@ -21,18 +21,20 @@ We provide pre-compiled binaries for the following platforms:
    chmod +x path/to/arch-node
    ```
 
+3. Additionally, you can use the pre-built docker images to run `arch-node`. Check [docker](./docker) for more details.
+
 ## Usage
 
 To start your node, you can simply run the binary with the following command:
 ```bash
-./path/to/arch-node --boot-node-endpoint "http://bootnode.test.aws.archnetwork.xyz" --data-dir "/custom/arch_data" --prover-endpoint "http://prover-01.test.aws.archnetwork.xyz" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
+./path/to/arch-node --boot-node-endpoint "https://bootnode.test.aws.archnetwork.xyz" --data-dir "/custom/arch_data" --prover-endpoint "https://prover-01.test.aws.archnetwork.xyz" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
 ```
 
 ### Testnet Configuration
 For validators setting up their Arch node for testnet operations, ensure you configure the following endpoints to connect correctly within the ```testnet4``` environment.
 
-- ```--boot-node-endpoint```: http://bootnode.test.aws.archnetwork.xyz
-- ```--prover-endpoint```: http://prover-01.test.aws.archnetwork.xyz
+- ```--boot-node-endpoint```: https://bootnode.test.aws.archnetwork.xyz
+- ```--prover-endpoint```: https://prover-01.test.aws.archnetwork.xyz
 
 ### Configuring Your Node
 
@@ -104,7 +106,7 @@ On successful startup of Arch Node you should see the following logs:
 [2024-06-13T13:11:00Z INFO  rpc::node::key::exchange] Nodes ready: 2/2
 [2024-06-13T13:11:00Z INFO  arch_node] Waiting for boot node to become available...
 [2024-06-13T13:11:00Z INFO  arch_node] Boot node is ready!
-[2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN RPC ENDPOINT : http://bitcoin-node.dev.aws.archnetwork.xyz:18443
+[2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN RPC ENDPOINT : https://bitcoin-node.dev.aws.archnetwork.xyz:18443
 [2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN WALLET : testwallet
 [2024-06-13T13:11:00Z INFO  arch_node] USING ZKVM ENDPOINT : http://127.0.0.1:8001
 [2024-06-13T13:11:00Z INFO  arch_node] ARCH-NODE ID : 2
