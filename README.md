@@ -25,14 +25,20 @@ We provide pre-compiled binaries for the following platforms:
 
 To start your node, you can simply run the binary with the following command:
 ```bash
-./path/to/arch-node --leader-endpoint "http://leader.example.com" --data-dir "/custom/arch_data" --prover-endpoint "http://custom.prover:8001" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
+./path/to/arch-node --boot-node-endpoint "http://bootnode.test.aws.archnetwork.xyz" --data-dir "/custom/arch_data" --prover-endpoint "http://custom.prover:8001" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
 ```
+
+## Testnet Configuration
+For validators setting up their Arch node for testnet operations, ensure you configure the following endpoints to connect correctly within the ```testnet4``` environment.
+
+- ```--boot-node-endpoint```: http://testnet4.bootnode.example.com
+- ```--prover-endpoint```: http://prover-01.test.aws.archnetwork.xyz
 
 ### Configuring Your Node
 
 You can customize the behavior of your Arch node using the following command-line arguments:
 
-- ```--leader-endpoint```: Specify the bootnode (formerly: leader) endpoint URL. The bootnode coordinates network activities and helps in propagating information across the network, during Arch Node startup initial info about Arch Network is fetched from the bootnode. (default: None)
+- ```--boot-node-endpoint```: Specify the bootnode endpoint URL. The bootnode coordinates network activities and helps in propagating information across the network, during Arch Node startup initial info about Arch Network is fetched from the bootnode. (default: None)
 - ```--data-dir```: Path to the data directory (default: ./arch_data).
 - ```--prover-endpoint```: URL of the ZKVM prover endpoint. ZKVM Prover is responsible for executing programs and generating ZKVM proofs that are validated by Arch Network Validators. (default: http://127.0.0.1:8001)
 - ```--network-mode```: Network mode (options: MAINNET, TESTNET, DEVNET; default: DEVNET).
