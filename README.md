@@ -25,7 +25,7 @@ We provide pre-compiled binaries for the following platforms:
 
 To start your node, you can simply run the binary with the following command:
 ```bash
-./path/to/arch-node --boot-node-endpoint "http://bootnode.test.aws.archnetwork.xyz" --data-dir "/custom/arch_data" --prover-endpoint "http://custom.prover:8001" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
+./path/to/arch-node --boot-node-endpoint "http://bootnode.test.aws.archnetwork.xyz" --data-dir "/custom/arch_data" --prover-endpoint "http://prover-01.test.aws.archnetwork.xyz" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
 ```
 
 ### Testnet Configuration
