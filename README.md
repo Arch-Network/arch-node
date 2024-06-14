@@ -21,6 +21,8 @@ We provide pre-compiled binaries for the following platforms:
    chmod +x path/to/arch-node
    ```
 
+3. Additionally, you can use the pre-built docker images to run `arch-node`. Check [docker](./docker) for more details.
+
 ## Usage
 
 To start your node, you can simply run the binary with the following command:
