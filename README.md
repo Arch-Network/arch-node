@@ -1,6 +1,6 @@
 # Arch Node
 
-Welcome Arch Node Validators! This repository is your go-to resource for downloading, setting up, and running an Arch validator node on the Arch network. Here you will find binaries for multiple platforms and detailed instructions on how to configure and run your node.
+Welcome Arch Node Validators! This repository is your go-to resource for downloading, setting up, and running an Arch validator node on Arch Network. Here you will find binaries for multiple platforms, docker images and detailed instructions on how to configure and run your node.
 
 ## Supported Platforms
 
@@ -10,6 +10,7 @@ We provide pre-compiled binaries for the following platforms:
 - aarch64-unknown-linux-gnu (Linux ARM64)
 - x86_64-apple-darwin (MacOS x86_64)
 - x86_64-unknown-linux-gnu (Linux x86_64)
+- [Docker](./docker)
 
 ## Installation
 
@@ -25,28 +26,27 @@ We provide pre-compiled binaries for the following platforms:
 
 ## Usage
 
-To start your node, you can simply run the binary with the following command:
+To start your node, run the binary with the following command. Replace the bitcoin RPC parameters according to your environment:
 ```bash
-./path/to/arch-node --boot-node-endpoint "https://bootnode.test.aws.archnetwork.xyz" --data-dir "/custom/arch_data" --prover-endpoint "https://prover-01.test.aws.archnetwork.xyz" --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
+./path/to/arch-node --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
 ```
 
-### Testnet Configuration
-For validators setting up their Arch node for testnet operations, ensure you configure the following endpoints to connect correctly within the ```testnet4``` environment.
-
-- ```--boot-node-endpoint```: https://bootnode.test.aws.archnetwork.xyz
-- ```--prover-endpoint```: https://prover-01.test.aws.archnetwork.xyz
+To find details about all configuration parameters, run arch-node with `--help`:
+```bash
+./path/to/arch-node --help
+```
 
 ### Configuring Your Node
 
 You can customize the behavior of your Arch node using the following command-line arguments:
 
-- ```--boot-node-endpoint```: Specify the bootnode endpoint URL. The bootnode coordinates network activities and helps in propagating information across the network, during Arch Node startup initial info about Arch Network is fetched from the bootnode. (default: None)
-- ```--data-dir```: Path to the data directory (default: ```./arch_data```).
-- ```--prover-endpoint```: URL of the ZKVM prover endpoint. ZKVM Prover is responsible for executing programs and generating ZKVM proofs that are validated by Arch Network Validators. (default: http://127.0.0.1:8001)
 - ```--network-mode```: Network mode (options: MAINNET, TESTNET, DEVNET; default: DEVNET).
+- ```--boot-node-endpoint```: Specify the bootnode endpoint URL. The bootnode coordinates network activities and helps in propagating information across the network, during Arch Node startup initial info about Arch Network is fetched from the bootnode. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
+- ```--data-dir```: Path to the data directory (default: ```./arch_data```).
+- ```--prover-endpoint```: URL of the ZKVM prover endpoint. ZKVM Prover is responsible for executing programs and generating ZKVM proofs that are validated by Arch Network Validators. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
 
 #### Bitcoin Integration
-The Arch node uses Bitcoin network as a source of truth. Coordinator that is elected among Validators of the Arch Network writes any state changes to the Bitcoin network by sending transactions to the Bitcoin node. Rest of the Arch Network nodes integrate with Bitcoin network to read and validate ownership of Bitcoin UTXOs.
+The Arch node uses the Bitcoin network as a source of truth. A coordinator - elected among validators of the Arch Network - writes any state changes to the Bitcoin network by sending transactions to the Bitcoin node. All remaining nodes nodes integrate with the Bitcoin network to read and validate ownership of Bitcoin UTXOs.
 
 - ```--bitcoin-rpc-endpoint```: Bitcoin RPC server IP address (default: 127.0.0.1).
 - ```--bitcoin-rpc-port```: Port of the Bitcoin RPC server (default: 8332).
