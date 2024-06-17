@@ -45,7 +45,7 @@ You can customize the behavior of your Arch node using the following command-lin
 - ```--data-dir```: Path to the data directory (default: ```./arch_data```).
 - ```--prover-endpoint```: URL of the ZKVM prover endpoint. ZKVM Prover is responsible for executing programs and generating ZKVM proofs that are validated by Arch Network Validators. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
 
-#### Bitcoin Integration
+### Bitcoin Integration
 The Arch node uses the Bitcoin network as a source of truth. A coordinator - elected among validators of the Arch Network - writes any state changes to the Bitcoin network by sending transactions to the Bitcoin node. All remaining nodes nodes integrate with the Bitcoin network to read and validate ownership of Bitcoin UTXOs.
 
 - ```--bitcoin-rpc-endpoint```: Bitcoin RPC server IP address (default: 127.0.0.1).
@@ -58,6 +58,25 @@ The Arch node uses the Bitcoin network as a source of truth. A coordinator - ele
 
 - ```--rpc-bind-ip```: IP address to bind the RPC server (default: 127.0.0.1).
 - ```--rpc-bind-port```: Port to bind the JSON-RPC HTTP server. (default: 9001).
+
+### testnet4
+
+When running on `--network-mode testnet`, the Bitcoin node available through the configured endpoint must be running on the newest `tesnet4` network. Currently, the changes introducing `testnet4` are not yet merged to Bitcoin's mainstream.
+
+For the time being, you must manually compile Bitcoin with `testnet4` support:
+
+```bash
+git clone https://github.com/bitcoin/bitcoin.git
+cd bitcoin
+git fetch origin pull/29775/head:pr-29775
+git checkout pr-29775
+
+./autogen.sh
+./configure --with-incompatible-bdb
+make -j $(nproc)
+```
+
+Alternatively, you can run Bitcoin with testnet4 support in a Docker container. Information on how to set up a testnet4 container [is available here](https://bitcointalk.org/index.php?topic=5496494.msg64078072#msg64078072).
 
 ## Hardware Requirements
 
