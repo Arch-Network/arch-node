@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Allow some time for bitcoind to start up
+sleep 5
+
+WALLET_EXISTS=$(bitcoin-cli listwallets | jq '. | index("devwallet")')
+if [ $WALLET_EXISTS == "null" ]; then
+    echo "Creating devwallet..."
+    bitcoin-cli createwallet "devwallet"
+    bitcoin-cli -rpcwallet=devwallet -generate 101 # Generate 101 blocks
+fi
+
+echo "Running bitcoin-mine loop..."
+
+while true
+do
+    MEMPOOL_SIZE=$(bitcoin-cli -rpcwallet=devwallet getmempoolinfo | jq '.size')
+    if [[ $MEMPOOL_SIZE -gt 0 ]]; then
+        echo "Mining 6 blocks..."
+        bitcoin-cli -rpcwallet=devwallet -generate 6
+    fi
+    sleep 5
+done

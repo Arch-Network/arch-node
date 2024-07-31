@@ -8,7 +8,7 @@ This folder contains docker images than can be used as starting point for runnin
 ## Running arch-node
 
 - Clone this git repository and `cd` into the `docker` folder. You'll find a `compose.yaml` file.
-- Edit the file to suit your environment. Most notably, you must provide the details that arch-node will use to connect to your Bitcoin node. These parameters are prefixed with `BITCOIN_RPC_`
+- The compose file is pre-configured, so everything should work well as-is. Feel free to update any configuration parameter.
 - To start `arch-node`, run `docker compose pull` followed by `docker compose up`.
 
 ---
