@@ -28,7 +28,7 @@ We provide pre-compiled binaries for the following platforms:
 
 To start your node, run the binary with the following command. Replace the bitcoin RPC parameters according to your environment:
 ```bash
-./path/to/arch-node --network-mode TESTNET --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
+./path/to/arch-node --network-mode testnet --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
 ```
 
 To find details about all configuration parameters, run arch-node with `--help`:
@@ -40,7 +40,7 @@ To find details about all configuration parameters, run arch-node with `--help`:
 
 You can customize the behavior of your Arch node using the following command-line arguments:
 
-- ```--network-mode```: Network mode (options: MAINNET, TESTNET, DEVNET; default: DEVNET).
+- ```--network-mode```: Network mode (options: mainnet, testnet, devnet; default: devnet).
 - ```--boot-node-endpoint```: Specify the bootnode endpoint URL. The bootnode coordinates network activities and helps in propagating information across the network, during Arch Node startup initial info about Arch Network is fetched from the bootnode. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
 - ```--data-dir```: Path to the data directory (default: ```./arch_data```).
 - ```--prover-endpoint```: URL of the ZKVM prover endpoint. ZKVM Prover is responsible for executing programs and generating ZKVM proofs that are validated by Arch Network Validators. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
