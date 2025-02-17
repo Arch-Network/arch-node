@@ -1,138 +1,272 @@
-# Arch Node
+# Arch Network Node Installation Guide
 
-Welcome Arch Node Validators! This repository is your go-to resource for downloading, setting up, and running an Arch validator node on Arch Network. Here you will find binaries for multiple platforms, docker images and detailed instructions on how to configure and run your node.
+## Architecture Overview
 
-## Supported Platforms
+```mermaid
+graph TB
+    subgraph "Arch Network Components"
+        V[Validator Node]
+        LV[Local Validator]
+        CLI[CLI]
+        
+        User((User))
+        User -->|Interacts with| CLI
+        CLI -->|Commands| V
+        CLI -->|Local Development| LV
+    end
 
-We provide pre-compiled binaries for the following platforms:
+    subgraph "Bitcoin Integration"
+        E[Electrs Server]
+        BTC[Bitcoin Node]
+        
+        V -->|Queries| E
+        LV -->|Queries| E
+        E -->|Syncs with| BTC
+    end
 
-- aarch64-apple-darwin (MacOS ARM64)
-- aarch64-unknown-linux-gnu (Linux ARM64)
-- x86_64-apple-darwin (MacOS x86_64)
-- x86_64-unknown-linux-gnu (Linux x86_64)
-- [Docker](./docker)
-
-## Installation
-
-1. **Download the Binary**: Navigate to the Releases section and download the binary suitable for your platform.
-   URL: https://github.com/Arch-Network/arch-node/releases
-
-2. **Set Executable Permission**: After downloading, change the permissions to make the binary executable:
-   ```bash
-   chmod +x path/to/arch-node
-   ```
-
-3. Additionally, you can use the pre-built docker images to run `arch-node`. Check [docker](./docker) for more details.
-
-## Usage
-
-To start your node, run the binary with the following command. Replace the bitcoin RPC parameters according to your environment:
-```bash
-./path/to/arch-node --network-mode testnet --bitcoin-rpc-endpoint "192.168.1.100" --bitcoin-rpc-port 18332 --bitcoin-rpc-username "user" --bitcoin-rpc-password "pass" --bitcoin-rpc-wallet "mywallet"
+    style V fill:#f9f,stroke:#333,stroke-width:2px
+    style LV fill:#bbf,stroke:#333,stroke-width:2px
+    style CLI fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
-To find details about all configuration parameters, run arch-node with `--help`:
-```bash
-./path/to/arch-node --help
+## Available Binaries
+
+Arch Network provides three different binaries for different use cases:
+
+```mermaid
+graph LR
+    A[Arch Network] --> B[Validator Node]
+    A --> C[Local Validator]
+    A --> D[CLI]
+    
+    B -->|"Production Use"| E[Network Participation]
+    C -->|"Development"| F[Local Testing]
+    D -->|"User Interface"| G[Network Interaction]
+
+    style A fill:#f96,stroke:#333,stroke-width:2px
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
-### Configuring Your Node
+1. **Validator Node** (`validator`)
+   - Full validator node for participating in the network
+   - Supports mainnet deployment
+   - Complete consensus participation
 
-You can customize the behavior of your Arch node using the following command-line arguments:
+2. **Local Validator** (`local_validator`)
+   - Simplified validator for local development
+   - Perfect for testing and development
+   - Faster setup and iteration
 
-- ```--network-mode```: Network mode (options: mainnet, testnet, devnet; default: devnet).
-- ```--boot-node-endpoint```: Specify the bootnode endpoint URL. The bootnode coordinates network activities and helps in propagating information across the network, during Arch Node startup initial info about Arch Network is fetched from the bootnode. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
-- ```--data-dir```: Path to the data directory (default: ```./arch_data```).
-- ```--prover-endpoint```: URL of the ZKVM prover endpoint. ZKVM Prover is responsible for executing programs and generating ZKVM proofs that are validated by Arch Network Validators. If you omit this parameter, the default bootnode for the current network (testnet, mainnet) will be used.
+3. **CLI** (`cli`)
+   - Command line interface for interacting with the network
+   - User-friendly commands
+   - Network management capabilities
 
-### Bitcoin Integration
-The Arch node uses the Bitcoin network as a source of truth. A coordinator - elected among validators of the Arch Network - writes any state changes to the Bitcoin network by sending transactions to the Bitcoin node. All remaining nodes nodes integrate with the Bitcoin network to read and validate ownership of Bitcoin UTXOs.
+## System Requirements
 
-- ```--bitcoin-rpc-endpoint```: Bitcoin RPC server IP address (default: 127.0.0.1).
-- ```--bitcoin-rpc-port```: Port of the Bitcoin RPC server (default: 8332).
-- ```--bitcoin-rpc-username```: Username for Bitcoin RPC authentication.
-- ```--bitcoin-rpc-password```: Password for Bitcoin RPC authentication.
-- ```--bitcoin-rpc-wallet```: Bitcoin wallet name (default: testwallet).
+```mermaid
+graph TB
+    subgraph "Minimum Requirements"
+        CPU[CPU: 4+ cores]
+        RAM[RAM: 8+ GB]
+        Storage[Storage: 100+ GB SSD]
+        Network[Network: 100 Mbps]
+    end
+    
+    subgraph "Recommended"
+        RCPU[CPU: 8+ cores]
+        RRAM[RAM: 16+ GB]
+        RStorage[Storage: 500+ GB SSD]
+        RNetwork[Network: 1 Gbps]
+    end
 
-#### RPC Server Configuration
-
-- ```--rpc-bind-ip```: IP address to bind the RPC server (default: 127.0.0.1).
-- ```--rpc-bind-port```: Port to bind the JSON-RPC HTTP server. (default: 9001).
-
-### testnet4
-
-When running on `--network-mode testnet`, the Bitcoin node available through the configured endpoint must be running on the newest `tesnet4` network. Currently, the changes introducing `testnet4` are not yet merged to Bitcoin's mainstream.
-
-For the time being, you must manually compile Bitcoin with `testnet4` support:
-
-```bash
-git clone https://github.com/bitcoin/bitcoin.git
-cd bitcoin
-git fetch origin pull/29775/head:pr-29775
-git checkout pr-29775
-
-./autogen.sh
-./configure --with-incompatible-bdb
-make -j $(nproc)
+    style CPU fill:#f96,stroke:#333,stroke-width:2px
+    style RAM fill:#f96,stroke:#333,stroke-width:2px
+    style Storage fill:#f96,stroke:#333,stroke-width:2px
+    style Network fill:#f96,stroke:#333,stroke-width:2px
 ```
 
-Alternatively, you can run Bitcoin with testnet4 support in a Docker container. Information on how to set up a testnet4 container [is available here](https://bitcointalk.org/index.php?topic=5496494.msg64078072#msg64078072).
+## Pre-built Binaries
 
-## Hardware Requirements
+Pre-compiled binaries are available for the following platforms:
 
-### Combined Hardware Requirements for Running Both a Bitcoin Full Node and an Arch Node
+| Platform | Architecture | OS | Download Link |
+|----------|--------------|-------|---------------|
+| MacOS ARM64 | aarch64 | darwin | [Download](https://github.com/Arch-Network/arch-node/releases) |
+| Linux ARM64 | aarch64 | linux-gnu | [Download](https://github.com/Arch-Network/arch-node/releases) |
+| MacOS x86_64 | x86_64 | darwin | [Download](https://github.com/Arch-Network/arch-node/releases) |
+| Linux x86_64 | x86_64 | linux-gnu | [Download](https://github.com/Arch-Network/arch-node/releases) |
 
-For users intending to operate both a Bitcoin Full Node and an Arch Node on the same machine, the following specifications are recommended to handle the demands of both nodes efficiently:
+Download the appropriate binary for your platform from the [releases page](https://github.com/Arch-Network/arch-node/releases).
 
-- **Operating System**: Linux or MacOS. These systems are compatible with the software used by both nodes.
+## Building from Source
 
-- **Processor (CPU)**: Any modern CPU with a clock speed of around 2.5 GHz is sufficient for standard operations.
+### Prerequisites
 
-- **Memory (RAM)**: At least 32 GB of RAM is recommended.
+- [Rust](https://www.rust-lang.org/tools/install)
+- make
+- clang/llvm
+- libssl-dev/openssl-dev
+- pkg-config
+- RocksDB dependencies
 
-- **Disk Space**: A combined total of at least 2 TB of SSD storage is necessary. This space will accommodate the full Bitcoin blockchain and the additional data from the Arch Node.
+#### Ubuntu/Debian
 
-- **Bandwidth**: Internet connection with at least 3 megabytes per second upload and download speed is advisable. This increased bandwidth supports the data transmission requirements of both nodes, especially important when the network traffic is high.
-
-By adhering to these enhanced specifications, users can ensure that both their Bitcoin and Arch Nodes operate effectively, contributing to the stability and security of both networks.
-
-### Hardware Requirements for Running an Arch Node
-
-To ensure optimal performance of an Arch Node the following hardware specifications are recommended:
-
-- **Operating System**: Linux or MacOS.
-
-- **Processor (CPU)**: Any modern CPU with a clock speed of around 2.5 GHz is sufficient for standard operations.
-
-- **Memory (RAM)**: At least 16 GB of RAM is recommended to ensure smooth operation.
-
-- **Disk Space**: A minimum of 1 TB of SSD storage is required to manage the blockchain data and logs. This allows for adequate storage of historical data and ensures quick data retrieval and processing.
-
-- **Bandwidth**: A stable internet connection with a minimum of 2 megabytes per second upload and download speed is necessary to handle network communications and data transmission reliably.
-
-### Hardware Requirements for Running a Full Bitcoin Node
-For the most up-to-date information on running a full Bitcoin Node, please visit [Bitcoin.org](https://bitcoin.org/en/full-node).
-
-## Validator Mode
-By default, the node runs in validator mode. On the initial run, the node automatically generates a public-private key pair, essential for node identification and secure communication within the network. This key is by default located in the file ```secret_key``` in the folder ```arch_data```. To change the default folder pass ```--data-dir``` argument when running Arch Node.
-
-## Log Outputs
-On successful startup of Arch Node you should see the following logs:
 ```
-[2024-06-13T13:10:45Z WARN  rpc::node::key::exchange] Boot node key exchange is not done yet. Will try again.
-[2024-06-13T13:10:50Z WARN  rpc::node::key::exchange] Boot node key exchange is not done yet. Will try again.
-[2024-06-13T13:10:55Z WARN  rpc::node::key::exchange] Boot node key exchange is not done yet. Will try again.
-[2024-06-13T13:11:00Z INFO  rpc::node::key::exchange] Nodes ready: 2/2
-[2024-06-13T13:11:00Z INFO  arch_node] Waiting for boot node to become available...
-[2024-06-13T13:11:00Z INFO  arch_node] Boot node is ready!
-[2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN RPC ENDPOINT : https://bitcoin-node.dev.aws.archnetwork.xyz:18443
-[2024-06-13T13:11:00Z INFO  arch_node] USING BITCOIN WALLET : testwallet
-[2024-06-13T13:11:00Z INFO  arch_node] USING ZKVM ENDPOINT : http://127.0.0.1:8001
-[2024-06-13T13:11:00Z INFO  arch_node] ARCH-NODE ID : 2
-[2024-06-13T13:11:00Z INFO  arch_node] STARTING RPC SERVER...
-[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing processed txs...
-[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing UTXO Data...
-[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing UTXO Auth...
-[2024-06-13T13:11:00Z INFO  rpc] [Node 2] Syncing programs...
-[2024-06-13T13:11:01Z INFO  arch_node] RPC SERVER STARTED! PUBLIC ADDRESS : http://127.0.0.1:9002
+bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo apt-get update
+sudo apt-get install make clang libssl-dev pkg-config
+```
+
+#### macOS
+
+Install Homebrew if not already installed
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install Rust
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Install other dependencies
+
+```
+brew install make llvm openssl pkg-config
+```
+
+### Building with Earthly (Recommended)
+
+1. Install [Earthly](https://earthly.dev/get-earthly)
+2. Build all binaries:
+
+```
+earthly +local
+```
+
+The built binaries will be available at:
+- `./bin/$ARCH/validator`
+- `./bin/$ARCH/local_validator`
+- `./bin/$ARCH/cli`
+
+### Building with Cargo
+
+```
+bash
+cargo build --release
+```
+
+The built binaries will be in `./target/release/`.
+
+## Running a Validator Node
+
+The validator node is used for participating in the Arch Network. Configuration options:
+
+```
+validator \
+--network-mode <MODE> \
+--data-dir <DIR> \
+--rpc-bind-ip <IP> \
+--rpc-bind-port <PORT> \
+--boot-node-endpoint <ENDPOINT> \
+--p2p-bind-port <PORT> \
+--electrs-endpoint <ELECTRS_URL>
+```
+
+### Network Modes
+- `mainnet`
+
+## Bitcoin Integration
+
+### Electrs Configuration
+Both validator types require an Electrs server for Bitcoin integration:
+
+#### Validator Node
+- `--electrs-endpoint`: HTTP endpoint for Electrs server (default: http://127.0.0.1:3002)
+
+#### Local Validator
+- `--electrs-endpoint`: HTTP endpoint for Electrs server (default: http://127.0.0.1:3002)
+- `--electrum-endpoint`: TCP endpoint for Electrum protocol (default: tcp://127.0.0.1:60401)
+
+### Setting up Electrs
+Before running any validator, ensure you have Electrs running and properly configured for your network mode:
+
+1. For mainnet: Configure Electrs with Bitcoin mainnet
+2. For testnet: Configure Electrs with Bitcoin testnet
+3. For devnet/localnet: Configure Electrs with Bitcoin regtest
+
+For installation and configuration of Electrs, refer to the [Electrs documentation](https://github.com/romanz/electrs).
+
+## Docker Compose Example
+
+```
+services:
+  validator:
+    image: ghcr.io/arch-network/validator:latest
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./data:/data
+    environment:
+      - NETWORK_MODE=localnet
+      - RPC_BIND_IP=0.0.0.0
+      - RPC_BIND_PORT=9001
+      - ELECTRS_ENDPOINT=http://electrs:3002
+```
+
+## Network Architecture
+
+```mermaid
+graph TB
+    subgraph "Validator Node Setup"
+        VN[Validator Node]
+        RPC[RPC Interface]
+        P2P[P2P Network]
+        Data[Data Directory]
+        
+        VN -->|Exposes| RPC
+        VN -->|Connects to| P2P
+        VN -->|Stores data in| Data
+    end
+    
+    subgraph "Bitcoin Integration"
+        ES[Electrs Server]
+        BN[Bitcoin Node]
+        
+        ES -->|Syncs with| BN
+        VN -->|Queries| ES
+    end
+
+    style VN fill:#f9f,stroke:#333,stroke-width:2px
+    style ES fill:#bbf,stroke:#333,stroke-width:2px
+    style BN fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## Deployment Options
+
+```mermaid
+graph LR
+    subgraph "Deployment Methods"
+        SB[Source Build]
+        DB[Docker Build]
+        PB[Pre-built Binary]
+    end
+    
+    SB -->|Manual compilation| D[Deployment]
+    DB -->|Container deployment| D
+    PB -->|Direct installation| D
+    
+    D -->|Configuration| C[Configuration]
+    C -->|Network selection| N[Network Mode]
+    N -->|Choose one| M1[Mainnet]
+    N -->|Choose one| M2[Testnet]
+    N -->|Choose one| M3[Devnet]
+
+    style D fill:#f96,stroke:#333,stroke-width:2px
+    style N fill:#bbf,stroke:#333,stroke-width:2px
 ```
