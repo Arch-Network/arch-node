@@ -1,0 +1,89 @@
+name: Post Release To Telegram
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  telegram-notify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Telegram notifier dependencies
+        run: python3 -m pip install -r telegram/requirements.txt
+
+      - name: Validate Telegram configuration
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${TELEGRAM_BOT_TOKEN}" ]; then
+            echo "Missing required secret: TELEGRAM_BOT_TOKEN" >&2
+            exit 1
+          fi
+
+          if [ -z "${TELEGRAM_CHANNEL_ID}" ]; then
+            echo "Missing required secret: TELEGRAM_CHANNEL_ID" >&2
+            exit 1
+          fi
+
+      - name: Write Telegram message file
+        env:
+          RELEASE_BODY: ${{ github.event.release.body }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+
+          max_length = 4096
+          body = os.environ.get("RELEASE_BODY", "")
+          release_url = os.environ.get("RELEASE_URL", "")
+
+          if not body.strip():
+              print("Release body is empty; refusing to post a blank Telegram message.", file=sys.stderr)
+              sys.exit(1)
+
+          message = body
+          suffix = f"\n\nFull release notes: {release_url}"
+
+          if len(message) > max_length:
+              available = max_length - len(suffix)
+              if available <= 0:
+                  message = suffix.lstrip()
+              else:
+                  candidate = message[:available].rstrip()
+                  newline_index = candidate.rfind("\n")
+                  if newline_index > 0:
+                      candidate = candidate[:newline_index].rstrip()
+                  message = f"{candidate}{suffix}"
+
+          Path("/tmp/release.txt").write_text(message, encoding="utf-8")
+          PY
+
+      - name: Post release to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: |
+          set -euo pipefail
+
+          python3 telegram/main.py \
+            --telegram-bot-token "$TELEGRAM_BOT_TOKEN" \
+            --telegram-channel-id "$TELEGRAM_CHANNEL_ID" \
+            --message-file /tmp/release.txt
