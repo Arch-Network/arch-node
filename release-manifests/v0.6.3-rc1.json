@@ -1,7 +1,7 @@
 {
   "source_repo": "Arch-Network/arch-network",
   "source_tag": "v0.6.3-rc1",
-  "source_sha": "d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+  "source_sha": "8268255a35c3a732e8d8159821a3681d60d8d4a6",
   "release_type": "stable",
   "prerelease": false,
   "make_latest": true,
@@ -9,37 +9,37 @@
   "manifest_path": "release-manifests/v0.6.3-rc1.json",
   "ghcr_tags": {
     "validator": [
-      "ghcr.io/arch-network/validator:d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+      "ghcr.io/arch-network/validator:8268255a35c3a732e8d8159821a3681d60d8d4a6",
       "ghcr.io/arch-network/validator:v0.6.3-rc1",
       "ghcr.io/arch-network/validator:0.6.3-rc1",
       "ghcr.io/arch-network/validator:latest"
     ],
     "bootnode": [
-      "ghcr.io/arch-network/bootnode:d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+      "ghcr.io/arch-network/bootnode:8268255a35c3a732e8d8159821a3681d60d8d4a6",
       "ghcr.io/arch-network/bootnode:v0.6.3-rc1",
       "ghcr.io/arch-network/bootnode:0.6.3-rc1",
       "ghcr.io/arch-network/bootnode:latest"
     ],
     "local_validator": [
-      "ghcr.io/arch-network/local_validator:d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+      "ghcr.io/arch-network/local_validator:8268255a35c3a732e8d8159821a3681d60d8d4a6",
       "ghcr.io/arch-network/local_validator:v0.6.3-rc1",
       "ghcr.io/arch-network/local_validator:0.6.3-rc1",
       "ghcr.io/arch-network/local_validator:latest"
     ],
     "arch_cli": [
-      "ghcr.io/arch-network/arch-cli:d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+      "ghcr.io/arch-network/arch-cli:8268255a35c3a732e8d8159821a3681d60d8d4a6",
       "ghcr.io/arch-network/arch-cli:v0.6.3-rc1",
       "ghcr.io/arch-network/arch-cli:0.6.3-rc1",
       "ghcr.io/arch-network/arch-cli:latest"
     ],
     "storage_service": [
-      "ghcr.io/arch-network/storage-service:d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+      "ghcr.io/arch-network/storage-service:8268255a35c3a732e8d8159821a3681d60d8d4a6",
       "ghcr.io/arch-network/storage-service:v0.6.3-rc1",
       "ghcr.io/arch-network/storage-service:0.6.3-rc1",
       "ghcr.io/arch-network/storage-service:latest"
     ],
     "mint_tokens": [
-      "ghcr.io/arch-network/mint-tokens:d759cb4bf345dc7da757048db69ec64fcc3a77c1",
+      "ghcr.io/arch-network/mint-tokens:8268255a35c3a732e8d8159821a3681d60d8d4a6",
       "ghcr.io/arch-network/mint-tokens:v0.6.3-rc1",
       "ghcr.io/arch-network/mint-tokens:0.6.3-rc1",
       "ghcr.io/arch-network/mint-tokens:latest"
