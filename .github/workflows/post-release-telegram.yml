@@ -59,10 +59,10 @@ jobs:
               print("Release body is empty; refusing to post a blank Telegram message.", file=sys.stderr)
               sys.exit(1)
 
-          message = body
           suffix = f"\n\nFull release notes: {release_url}"
+          message = body
 
-          if len(message) > max_length:
+          if len(message) + len(suffix) > max_length:
               available = max_length - len(suffix)
               if available <= 0:
                   message = suffix.lstrip()
@@ -72,6 +72,8 @@ jobs:
                   if newline_index > 0:
                       candidate = candidate[:newline_index].rstrip()
                   message = f"{candidate}{suffix}"
+          else:
+              message = f"{message.rstrip()}{suffix}"
 
           Path("/tmp/release.txt").write_text(message, encoding="utf-8")
           PY
