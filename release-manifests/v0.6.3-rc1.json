@@ -1,0 +1,106 @@
+{
+  "source_repo": "Arch-Network/arch-network",
+  "source_tag": "v0.6.3-rc1",
+  "source_sha": "a473480de38ce3aa6e24a352c676d083b326cd4b",
+  "release_type": "stable",
+  "prerelease": false,
+  "make_latest": true,
+  "s3_prefix": "s3://arch-network-dev-releases/v0.6.3-rc1",
+  "manifest_path": "release-manifests/v0.6.3-rc1.json",
+  "ghcr_tags": {
+    "validator": [
+      "ghcr.io/arch-network/validator:a473480de38ce3aa6e24a352c676d083b326cd4b",
+      "ghcr.io/arch-network/validator:v0.6.3-rc1",
+      "ghcr.io/arch-network/validator:0.6.3-rc1",
+      "ghcr.io/arch-network/validator:latest"
+    ],
+    "bootnode": [
+      "ghcr.io/arch-network/bootnode:a473480de38ce3aa6e24a352c676d083b326cd4b",
+      "ghcr.io/arch-network/bootnode:v0.6.3-rc1",
+      "ghcr.io/arch-network/bootnode:0.6.3-rc1",
+      "ghcr.io/arch-network/bootnode:latest"
+    ],
+    "local_validator": [
+      "ghcr.io/arch-network/local_validator:a473480de38ce3aa6e24a352c676d083b326cd4b",
+      "ghcr.io/arch-network/local_validator:v0.6.3-rc1",
+      "ghcr.io/arch-network/local_validator:0.6.3-rc1",
+      "ghcr.io/arch-network/local_validator:latest"
+    ],
+    "arch_cli": [
+      "ghcr.io/arch-network/arch-cli:a473480de38ce3aa6e24a352c676d083b326cd4b",
+      "ghcr.io/arch-network/arch-cli:v0.6.3-rc1",
+      "ghcr.io/arch-network/arch-cli:0.6.3-rc1",
+      "ghcr.io/arch-network/arch-cli:latest"
+    ],
+    "storage_service": [
+      "ghcr.io/arch-network/storage-service:a473480de38ce3aa6e24a352c676d083b326cd4b",
+      "ghcr.io/arch-network/storage-service:v0.6.3-rc1",
+      "ghcr.io/arch-network/storage-service:0.6.3-rc1",
+      "ghcr.io/arch-network/storage-service:latest"
+    ],
+    "mint_tokens": [
+      "ghcr.io/arch-network/mint-tokens:a473480de38ce3aa6e24a352c676d083b326cd4b",
+      "ghcr.io/arch-network/mint-tokens:v0.6.3-rc1",
+      "ghcr.io/arch-network/mint-tokens:0.6.3-rc1",
+      "ghcr.io/arch-network/mint-tokens:latest"
+    ]
+  },
+  "artifacts": [
+    {
+      "name": "arch-cli-aarch64-apple-darwin",
+      "sha256": "173823e016501a31877c6868c6d2ff12a598951b7d47e59a7ad5668956235493"
+    },
+    {
+      "name": "arch-cli-x86_64-apple-darwin",
+      "sha256": "961716cdd2434fa81c2c43ac18ebaf571e944d679ae428d4d321379c7f90d255"
+    },
+    {
+      "name": "arch-cli-x86_64-unknown-linux-gnu",
+      "sha256": "ec364b6e7205c10805c5a0998ff4840a2208660e2135932b7d753340a2e2b508"
+    },
+    {
+      "name": "bootnode-aarch64-apple-darwin",
+      "sha256": "41206ae83096dedb92d126c8d0921fe6ba23f83efe8b61203b5d1ca561df309c"
+    },
+    {
+      "name": "bootnode-x86_64-apple-darwin",
+      "sha256": "d11ac15bd6da942f5f5f49c9bd22fd6f76532299247436b05311b148cc6500dc"
+    },
+    {
+      "name": "bootnode-x86_64-unknown-linux-gnu",
+      "sha256": "d29806f48e949252fc9f8a1c78e4ebbcfc26db8f0f4dc8e5a2cfc4b8946427b6"
+    },
+    {
+      "name": "local_validator-aarch64-apple-darwin",
+      "sha256": "c86a8f62edde7bb082e28e6158f3b90813ac119b3e2eb8dd9c661ee86632514f"
+    },
+    {
+      "name": "local_validator-x86_64-apple-darwin",
+      "sha256": "612854b0fccacb514517edf982b87328d5ce0a22959bc8bb61ec4b65f493b9c8"
+    },
+    {
+      "name": "local_validator-x86_64-unknown-linux-gnu",
+      "sha256": "6291dc824957a1c3bc7a91fba95ef32e4b43c84fa2acf9965e9d4d5698e6d7fc"
+    },
+    {
+      "name": "mint-tokens-x86_64-unknown-linux-gnu",
+      "sha256": "7aab7f68be4f821af05d8f5461b1d9a508e52af147362cdedfd90b4908432b27"
+    },
+    {
+      "name": "storage-service-x86_64-unknown-linux-gnu",
+      "sha256": "2a4f2264f040ae2984107ab6a12e110e6cd7208e409cb80f25ea491f97f649ac"
+    },
+    {
+      "name": "validator-aarch64-apple-darwin",
+      "sha256": "9009d7173eeb8f066e292418aa4aa8ad233c3c08b6b95697c7481675f74f6dd3"
+    },
+    {
+      "name": "validator-x86_64-apple-darwin",
+      "sha256": "c417ed2508b605b851ea0366053c90fb725bb2581220ffa7b827838aa65b4891"
+    },
+    {
+      "name": "validator-x86_64-unknown-linux-gnu",
+      "sha256": "2f414cd209e93f3bf819ebd42d8ca78a642428b2a30595ef252ab0ab6d1eef74"
+    }
+  ]
+}
