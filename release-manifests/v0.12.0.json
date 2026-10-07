@@ -1,0 +1,98 @@
+{
+  "source_repo": "Arch-Network/arch-network",
+  "source_tag": "v0.12.0",
+  "source_sha": "8711aa4baef3abb32b38eb83af8e59f00b870e37",
+  "release_type": "stable",
+  "prerelease": false,
+  "make_latest": true,
+  "s3_prefix": "s3://arch-network-dev-releases/v0.12.0",
+  "manifest_path": "release-manifests/v0.12.0.json",
+  "ghcr_tags": {
+    "validator": [
+      "ghcr.io/arch-network/validator:8711aa4baef3abb32b38eb83af8e59f00b870e37",
+      "ghcr.io/arch-network/validator:v0.12.0",
+      "ghcr.io/arch-network/validator:0.12.0",
+      "ghcr.io/arch-network/validator:latest"
+    ],
+    "bootnode": [
+      "ghcr.io/arch-network/bootnode:8711aa4baef3abb32b38eb83af8e59f00b870e37",
+      "ghcr.io/arch-network/bootnode:v0.12.0",
+      "ghcr.io/arch-network/bootnode:0.12.0",
+      "ghcr.io/arch-network/bootnode:latest"
+    ],
+    "local_validator": [
+      "ghcr.io/arch-network/local_validator:8711aa4baef3abb32b38eb83af8e59f00b870e37",
+      "ghcr.io/arch-network/local_validator:v0.12.0",
+      "ghcr.io/arch-network/local_validator:0.12.0",
+      "ghcr.io/arch-network/local_validator:latest"
+    ],
+    "arch_cli": [
+      "ghcr.io/arch-network/arch-cli:8711aa4baef3abb32b38eb83af8e59f00b870e37",
+      "ghcr.io/arch-network/arch-cli:v0.12.0",
+      "ghcr.io/arch-network/arch-cli:0.12.0",
+      "ghcr.io/arch-network/arch-cli:latest"
+    ],
+    "storage_service": [
+      "ghcr.io/arch-network/storage-service:8711aa4baef3abb32b38eb83af8e59f00b870e37",
+      "ghcr.io/arch-network/storage-service:v0.12.0",
+      "ghcr.io/arch-network/storage-service:0.12.0",
+      "ghcr.io/arch-network/storage-service:latest"
+    ],
+    "mint_tokens": [
+      "ghcr.io/arch-network/mint-tokens:8711aa4baef3abb32b38eb83af8e59f00b870e37",
+      "ghcr.io/arch-network/mint-tokens:v0.12.0",
+      "ghcr.io/arch-network/mint-tokens:0.12.0",
+      "ghcr.io/arch-network/mint-tokens:latest"
+    ]
+  },
+  "artifacts": [
+    {
+      "name": "arch-cli-aarch64-apple-darwin",
+      "sha256": "2d4a37662c6d6a0c8bae745d3b38e9408ab6774491e59039accbf527b25f30ef"
+    },
+    {
+      "name": "arch-cli-x86_64-unknown-linux-gnu",
+      "sha256": "64f71b83a6f529e28ae16871aff22f1c08239875f02a80689f440587e4704503"
+    },
+    {
+      "name": "bootnode-aarch64-apple-darwin",
+      "sha256": "bbb05aa114379c71f16de53671798f3eaf11ded7545b3deb01bcb84f9e5b8af7"
+    },
+    {
+      "name": "bootnode-x86_64-unknown-linux-gnu",
+      "sha256": "bc5ad8f7db5e18ba815837bdf1a8d502331234c534694dfbe9a36cf08add0726"
+    },
+    {
+      "name": "libarch_plugin_kafka-aarch64-apple-darwin.dylib",
+      "sha256": "adf7ab2f26b78002f752f60bcb7f91d2b267562bae17d57cd473ba3d620b6294"
+    },
+    {
+      "name": "libarch_plugin_kafka-x86_64-unknown-linux-gnu.so",
+      "sha256": "14d69f14759533108e273866e33ea6dfec4a392501e89bc808c5dd8c294ee5bb"
+    },
+    {
+      "name": "local_validator-aarch64-apple-darwin",
+      "sha256": "64e2e20fe1b1dcd6615cd0cf8ab6960cbb666e7ccbe78744de173cf28c45031c"
+    },
+    {
+      "name": "local_validator-x86_64-unknown-linux-gnu",
+      "sha256": "9ad202a3eda2fc763c1ea638937e209e8b5fa5ca2fcb80ce4fcbae0beca09db7"
+    },
+    {
+      "name": "mint-tokens-x86_64-unknown-linux-gnu",
+      "sha256": "5a9ecd2650e72d6131d1de9a2f820cb0d58317f77a24d13c53fd4cba772c2eec"
+    },
+    {
+      "name": "storage-service-x86_64-unknown-linux-gnu",
+      "sha256": "ac1984fd4c7767911dc0913231480a8bed81fa59ec25242c863afb9867d198c9"
+    },
+    {
+      "name": "validator-aarch64-apple-darwin",
+      "sha256": "549236c773d8ffa7f44333f83de6493bbcf064aa192192abab911e1f60eef6e8"
+    },
+    {
+      "name": "validator-x86_64-unknown-linux-gnu",
+      "sha256": "5c92c955461711a3592c9827fa74f3616793da648f2a16f5d6e75f480d5fd863"
+    }
+  ]
+}
