@@ -1,23 +1,37 @@
 services:
   arch-node:
-    image: ghcr.io/arch-network/node:latest
+    # Pin to a specific release tag/digest instead of the floating `latest` tag.
+    # `latest` was removed by audit cleanup to avoid unreviewed auto-upgrades.
+    image: ghcr.io/arch-network/node:v0.12.0
     ports:
-      - 9001:9001
+      # RPC is exposed on the host loopback only; change to 0.0.0.0 only behind
+      # a firewall or reverse proxy with auth (see docker/README.md).
+      - 127.0.0.1:9001:9001
+    user: "1000:1000"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     environment:
       LOG_LEVEL: "info" # debug, info, error, warn, trace, off
       RUST_BACKTRACE: "1" # enable error stack traces
 
       NETWORK_MODE: "testnet" # devnet, testnet, mainnet
       DATA_DIR: "/arch-data" # directory where data will be stored
-      PRIVATE_KEY_PASSWORD: "" # Provide a password if you'd like to encrypt the local node keys.
-      
-      RPC_BIND_IP: "0.0.0.0" # bind to all IPs
+      # Empty value now fails startup: node keys must be encrypted at rest.
+      PRIVATE_KEY_PASSWORD: "${PRIVATE_KEY_PASSWORD:?Set PRIVATE_KEY_PASSWORD in .env}"
+
+      # Bind RPC to the loopback interface by default (audit cleanup).
+      RPC_BIND_IP: "127.0.0.1"
       RPC_BIND_PORT: "9001" # TCP 9001
 
-      BITCOIN_RPC_ENDPOINT: "127.0.0.1" # Replace with your bitcoin node's RPC endpoint
+      # Default to host.docker.internal so a host bitcoind is reachable.
+      BITCOIN_RPC_ENDPOINT: "${BITCOIN_RPC_ENDPOINT:-host.docker.internal}"
       BITCOIN_RPC_PORT: "8443" # Replace with your bitcoin node's RPC port
-      BITCOIN_RPC_USERNAME: "" # Replace with your bitcoin node's RPC username (if any)
-      BITCOIN_RPC_PASSWORD: "" # Replace with your bitcoin node's RPC password (if any)
-      BITCOIN_RPC_WALLET: ""   # Replace with the name of the wallet to be used by arch-node
+      BITCOIN_RPC_USERNAME: "${BITCOIN_RPC_USERNAME:-}" # Replace with your bitcoin node's RPC username (if any)
+      BITCOIN_RPC_PASSWORD: "${BITCOIN_RPC_PASSWORD:-}" # Replace with your bitcoin node's RPC password (if any)
+      BITCOIN_RPC_WALLET: "${BITCOIN_RPC_WALLET:-}"   # Replace with the name of the wallet to be used by arch-node
     volumes:
       - ./arch-data:/arch-data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
